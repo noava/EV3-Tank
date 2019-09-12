@@ -1,7 +1,28 @@
 #!/usr/bin/env python3
-from ev3dev2.motor import LargeMotor, OUTPUT_A, OUTPUT_B, SpeedPercent, MoveTank
-from ev3dev2.sensor import INPUT_1
-from ev3dev2.sensor.lego import TouchSensor
-from ev3dev2.led import Leds
+import ev3dev2
 
-# TODO: Add code here
+class Forword():
+    motor = ev3dev2.motor
+
+    def forword_on(self, speed):
+        pass
+
+        def forword_leght(self, speed, leght):
+            pass
+
+    def forword_roted(self, speed, roted):
+        pass
+
+    def forword_off(self):
+        pass
+
+def turn(degress):
+    pass
+
+class Gyro():
+    gyro = ev3dev2.sensor.lego.GyroSensor(ev3dev2.sensor.INPUT_1)
+    def calibrait(self):
+        pass
+
+    def get_pos(self):
+        pass
