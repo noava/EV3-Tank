@@ -6,7 +6,7 @@ from ev3dev2.sensor.lego import UltrasonicSensor
 from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3, INPUT_4
 
 class RobotHead(rpyc.Service):
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         self.exposed_support_tilt = LargeMotor(OUTPUT_A)
         self.exposed_support_power = LargeMotor(OUTPUT_B)
         self.exposed_dispenser = MediumMotor(OUTPUT_D)
@@ -15,7 +15,7 @@ class RobotHead(rpyc.Service):
         self.exposed_drop_us = UltrasonicSensor(INPUT_3)
         self.exposed_rear_us = UltrasonicSensor(INPUT_4)
 
-        super().__init__()
+        super().__init__(*args, **kwargs)
 
     def exposed_lower_support(self):
         self.exposed_support_tilt.on(-100)
@@ -26,5 +26,10 @@ class RobotHead(rpyc.Service):
     def exposed_raise_support(self):
         self.exposed_support_tilt.on_for_degrees(25, 540)
 
+    def exposed_dispense_candy(self):
+        pass # do stuff
 
-    
+if __name__ == "__main__":
+    from rpyc.utils.server import ThreadedServer
+    t = ThreadedServer(RobotHead, port=18861)
+    t.start()
