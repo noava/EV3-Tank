@@ -1,47 +1,30 @@
 #!/usr/bin/python3
 import rpyc
+import time
 from ev3dev2.motor import LargeMotor, MediumMotor, OUTPUT_A, OUTPUT_B, OUTPUT_D
 from ev3dev2.sensor.lego import UltrasonicSensor
-from ev3dev2.sensor import INPUT_A
+from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3, INPUT_4
 
 class RobotHead(rpyc.Service):
     def __init__(self):
-        self._support_tilt = LargeMotor(OUTPUT_A)
-        self._support_power = LargeMotor(OUTPUT_B)
-        self._arm = MediumMotor(OUTPUT_D)
-        self._rear_us = UltrasonicSensor(INPUT_A)
+        self.exposed_support_tilt = LargeMotor(OUTPUT_A)
+        self.exposed_support_power = LargeMotor(OUTPUT_B)
+        self.exposed_dispenser = MediumMotor(OUTPUT_D)
+        self.exposed_right_us = UltrasonicSensor(INPUT_1)
+        self.exposed_left_us = UltrasonicSensor(INPUT_2)
+        self.exposed_drop_us = UltrasonicSensor(INPUT_3)
+        self.exposed_rear_us = UltrasonicSensor(INPUT_4)
+
         super().__init__()
 
-    @property
-    def rear_us(self):
-        return self._rear_us = 
-
-    @property
-    def support_tilt(self):
-        return self._support_tilt
-
-    @property
-    def support_power(self):
-        return self._support_power
-
-    @support_power.setter
-    def _support_power_setter(self, value):
-        self.support_power.on(value, False)
-
-    def lower_support(self):
-        self.support_tilt.on(-100)
-        while self.rear_us.distance_centimeters > 5:
+    def exposed_lower_support(self):
+        self.exposed_support_tilt.on(-100)
+        while self.exposed_rear_us.distance_centimeters > 5:
             time.sleep(0.01)
-        self.support_tilt.on(0, True)
+        self.exposed_support_tilt.on(0, True)
 
-    @property
-    def arm(self):
-        return self._arm
+    def exposed_raise_support(self):
+        self.exposed_support_tilt.on_for_degrees(25, 540)
 
-    def grab(self):
-        pass
-
-    def release(self):
-        pass
 
     
