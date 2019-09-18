@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+
+"""
+For ev3 which controls motor and distance sensor
+"""
+
 import rpyc
 import time
 from ev3dev2.motor import LargeMotor, MediumMotor, OUTPUT_A, OUTPUT_B, OUTPUT_D
