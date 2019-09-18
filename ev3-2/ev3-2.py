@@ -20,28 +20,15 @@ class RobotLeft(rpyc.Service):
 
         super().__init__(*args, **kwargs)
 
-    def exposed_forword_length(self, length, speed):
-        seconds = 0 # TODO formula for length to seconds
+    def exposed_on_for_distance(self, length, speed, turn=0)
+        degrees_left = degrees_right = length # TODO: Math to calculate how many degrees to run for and turn
 
-        self.exposed_tank_left.on_for_seconds(speed, speed, seconds)
-        self.exposed_tank_right.on_for_seconds(speed, speed, seconds)
+        self.exposed_tank_left.on_for_degrees(speed, -speed, degrees_left)
+        self.exposed_tank_right.on_for_degrees(speed, -speed, degrees_right)
 
-    def exposed_forword_on(self, speed):
-        self.exposed_tank_left.on(speed, speed)
-        self.exposed_tank_right.on(speed, speed)
-
-    def exposed_forword_off(self):
-        self.exposed_tank_left.off()
-        self.exposed_tank_right.on()
-    
-    def exposed_turn_on(self, speed):
-        self.exposed_tank_left.on(speed, speed)
-        self.exposed_tank_right.on(speed*-1, speed*-1)
-
-    def exposed_turn_stop(self):
-        self.exposed_tank_left.off()
-        self.exposed_tank_right.off()
-
+    def exposed_on(self, left, right):
+        self.exposed_tank_left.on(left, -left)
+        self.exposed_tank_right.on(right, -right)
 
 if __name__ == "__main__":
     from rpyc.utils.server import ThreadedServer
