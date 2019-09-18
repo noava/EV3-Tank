@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-For ev3 which controls motor for candy, suport and distance sensor
+For ev3 which controls motor for suport and distance sensor
 """
 
 import rpyc
