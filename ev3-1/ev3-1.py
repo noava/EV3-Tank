@@ -22,10 +22,10 @@ class RobotRight(rpyc.Service):
     
     def exposed_candy_throw(self):
         # TODO fix value
-        ### Loade the candy in the thrower
+        ### Load the candy in the thrower
         self.exposed_candy_loader.on_for_degrees(80,75)
         self.exposed_candy_loader.on_for_degrees(80,-75)
 
-        ### Throwe the candy
+        ### Throw the candy
         self.exposed_candy_thrower.on_for_degrees(100,90)
         self.exposed_candy_thrower.on_for_degrees(50,-90)
