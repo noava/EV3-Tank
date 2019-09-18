@@ -14,7 +14,6 @@ class RobotHead(rpyc.Service):
     def __init__(self, *args, **kwargs):
         self.exposed_support_tilt = LargeMotor(OUTPUT_A)
         self.exposed_support_power = LargeMotor(OUTPUT_B)
-        self.exposed_dispenser = MediumMotor(OUTPUT_D)
         self.exposed_right_us = UltrasonicSensor(INPUT_1)
         self.exposed_left_us = UltrasonicSensor(INPUT_2)
         self.exposed_drop_us = UltrasonicSensor(INPUT_3)
@@ -30,9 +29,6 @@ class RobotHead(rpyc.Service):
 
     def exposed_raise_support(self):
         self.exposed_support_tilt.on_for_degrees(25, 540)
-
-    def exposed_dispense_candy(self):
-        pass # do stuff
 
 if __name__ == "__main__":
     from rpyc.utils.server import ThreadedServer
