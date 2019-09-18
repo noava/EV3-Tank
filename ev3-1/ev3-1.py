@@ -29,3 +29,8 @@ class RobotRight(rpyc.Service):
         ### Throw the candy
         self.exposed_candy_thrower.on_for_degrees(100,90)
         self.exposed_candy_thrower.on_for_degrees(50,-90)
+
+if __name__ == "__main__":
+    from rpyc.utils.server import ThreadedServer
+    t = ThreadedServer(RobotRight, port=18863)
+    t.start()
