@@ -11,6 +11,8 @@ from ev3dev2.sensor.lego import GyroSensor, TouchSensor
 from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3, INPUT_4
 
 class RobotLeft(rpyc.Service):
+    ALIASES = ['Left']
+
     def __init__(self, *args, **kwargs):
         self.exposed_tank_left = MoveTank(LargeMotor(OUTPUT_A), LargeMotor(OUTPUT_B))
         self.exposed_tank_right = MoveTank(LargeMotor(OUTPUT_C), LargeMotor(OUTPUT_D))

@@ -12,6 +12,8 @@ from ev3dev2.sensor import INPUT_1, INPUT_2
 
 
 class RobotRight(rpyc.Service):
+    ALIASES = ['Right']
+
     def __init__(self, *args, **kwargs):
         self.exposed_candy_loader = MediumMotor(OUTPUT_A)
         self.exposed_candy_thrower = MediumMotor(OUTPUT_B)
