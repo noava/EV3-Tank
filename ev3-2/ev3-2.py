@@ -22,7 +22,7 @@ class RobotLeft(rpyc.Service):
 
         super().__init__(*args, **kwargs)
 
-    def exposed_on_for_distance(self, length, speed, turn=0)
+    def exposed_on_for_distance(self, length, speed, turn=0):
         degrees_left = degrees_right = length # TODO: Math to calculate how many degrees to run for and turn
 
         self.exposed_tank_left.on_for_degrees(speed, -speed, degrees_left)
